@@ -1,0 +1,5 @@
+# Design-tool handoff artifacts (kept locally, not deployed)
+*.zip
+_extracted/
+.thumbnail
+.DS_Store

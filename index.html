@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Home Kitchen Masterclass · Heartful Table</title>
+<meta name="description" content="A 12-week plant-based skills curriculum — ratios over recipes, drilling weak spots, repetition, and inventing under constraint.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===================== TOKENS ===================== */
+  :root{
+    --bg:#F4EEE1;
+    --bg-alt:#EDE5D4;
+    --card:#FBF7EF;
+    --ink:#211F18;
+    --ink-2:#2C2A22;
+    --muted:#4A463C;
+    --muted-2:#6F6A5C;
+    --muted-3:#8A8474;
+    --line:#E2DBC9;
+    --line-2:#CEC7B3;
+    --sage:#4C573C;
+    --sage-dark:#39422D;
+    --sage-darker:#2B331F;
+    --sage-soft:#A8AF8E;
+    --sage-mist:#C7CBB0;
+    --moss-tint:#EFF1E4;
+    --clay:#C2683E;
+    --clay-hover:#B95E37;
+    --clay-deep:#9C4A2A;
+    --berry:#8C4A52;
+    --berry-soft:#D7B3B7;
+    --berry-mist:#E8C8CB;
+    --serif-display:'Sorts Mill Goudy',Georgia,serif;
+    --serif-body:'Spectral','Iowan Old Style',Georgia,serif;
+    --sans:'Karla',sans-serif;
+    --maxw:1180px;
+    --pad:32px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:var(--bg);}
+  body{
+    color:var(--ink);
+    font-family:var(--serif-body);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  html{scroll-behavior:smooth;}
+  ::selection{background:var(--sage-mist);color:var(--ink);}
+  ::-webkit-scrollbar{width:11px;height:11px;}
+  ::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:99px;border:3px solid var(--bg);}
+
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);}
+
+  /* shared eyebrow */
+  .eyebrow{
+    font-family:var(--sans);font-size:13.5px;font-weight:700;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--sage);
+  }
+
+  /* diagonal hatch used on coloured panels */
+  .hatch{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,0.05) 0 1px,transparent 1px 24px);}
+
+  /* ===================== HEADER ===================== */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(244,238,225,0.88);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  .brand{
+    font-family:var(--serif-display);font-size:25px;letter-spacing:.01em;
+    color:var(--ink);text-decoration:none;white-space:nowrap;
+  }
+  nav.links{
+    display:flex;align-items:center;gap:34px;
+    font-family:var(--sans);font-size:15.5px;font-weight:500;color:var(--muted);
+  }
+  nav.links a{text-decoration:none;transition:color .2s;}
+  nav.links a:hover{color:var(--sage);}
+  .btn{
+    font-family:var(--sans);font-weight:600;border-radius:999px;
+    cursor:pointer;text-decoration:none;white-space:nowrap;
+    border:none;transition:background .2s,border-color .2s,transform .2s;
+    display:inline-block;
+  }
+  .btn-sage{font-size:14.5px;color:var(--moss-tint);background:var(--sage);padding:11px 22px;}
+  .btn-sage:hover{background:var(--sage-dark);}
+  .btn-clay{font-size:15px;color:#FBF7EF;background:var(--clay);padding:13px 26px;}
+  .btn-clay:hover{background:var(--clay-hover);}
+  .btn-ghost{
+    font-size:15px;color:var(--sage);background:transparent;
+    border:1.5px solid var(--line-2);padding:13px 26px;
+  }
+  .btn-ghost:hover{border-color:#8B9472;}
+  .nav-toggle{display:none;}
+
+  /* ===================== HERO ===================== */
+  .hero{
+    padding-top:84px;padding-bottom:72px;
+    display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:center;
+  }
+  .hero h1{
+    font-family:var(--serif-display);font-weight:400;font-size:68px;
+    line-height:1.04;letter-spacing:-0.01em;color:var(--ink);margin-bottom:26px;
+  }
+  .hero .lead{
+    font-size:19px;line-height:1.7;color:var(--muted);max-width:30em;
+  }
+  .hero .lead em{color:var(--clay-deep);font-style:italic;}
+  .hero .eyebrow{margin-bottom:22px;}
+  .hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+
+  .hero-card{
+    position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;
+    background-color:var(--sage);
+    box-shadow:0 14px 36px rgba(58,46,30,0.13);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    color:var(--sage-mist);
+  }
+  .hero-card .cap{
+    font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--moss-tint);margin-top:18px;
+  }
+  .hero-stats{
+    position:absolute;bottom:26px;left:0;right:0;
+    display:flex;justify-content:center;gap:30px;color:var(--moss-tint);
+  }
+  .hero-stats .stat{text-align:center;}
+  .hero-stats .num{font-family:var(--serif-display);font-size:30px;line-height:1;}
+  .hero-stats .lbl{
+    font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--sage-soft);margin-top:6px;
+  }
+  .hero-stats .divider{width:1px;background:rgba(199,203,176,0.4);}
+
+  /* progress (added in pass 2 — placeholder bar kept subtle for now) */
+
+  /* ===================== SECTIONS ===================== */
+  section.band{background:var(--bg-alt);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  section.band.top-only{border-bottom:none;}
+
+  .idea-head{max-width:760px;margin-bottom:54px;}
+  .idea-head h2{
+    font-family:var(--serif-display);font-weight:400;font-size:42px;line-height:1.1;
+    color:var(--ink);margin:20px 0 22px;
+  }
+  .idea-head p{font-size:18px;line-height:1.7;color:var(--muted);}
+  .pad-lg{padding-top:88px;padding-bottom:88px;}
+
+  .principles{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px;
+  }
+  .principle{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:26px 24px 28px;box-shadow:0 2px 6px rgba(58,46,30,0.06);
+  }
+  .principle .num{font-family:var(--serif-display);font-size:34px;color:var(--clay);line-height:1;margin-bottom:16px;}
+  .principle h3{font-family:var(--serif-display);font-weight:400;font-size:21px;line-height:1.15;color:var(--ink);margin-bottom:10px;}
+  .principle p{font-size:15px;line-height:1.6;color:var(--muted-2);}
+
+  /* HOW IT WORKS */
+  .how{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+  .how h2{font-family:var(--serif-display);font-weight:400;font-size:38px;line-height:1.1;color:var(--ink);margin:20px 0 30px;}
+  .rules{display:flex;flex-direction:column;gap:20px;}
+  .rule{display:flex;gap:16px;align-items:flex-start;}
+  .rule .dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--clay);margin-top:9px;}
+  .rule p{font-size:16.5px;line-height:1.62;color:var(--muted);}
+
+  .shape-card{
+    background:var(--sage);border-radius:18px;padding:40px 38px;color:var(--moss-tint);
+    box-shadow:0 14px 36px rgba(58,46,30,0.13);
+  }
+  .shape-card .k{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-soft);margin-bottom:8px;}
+  .shape-card .h{font-family:var(--serif-display);font-size:24px;line-height:1.2;color:#FBF7EF;margin-bottom:28px;}
+  .shape-row{display:flex;gap:18px;align-items:baseline;padding:15px 0;border-top:1px solid rgba(199,203,176,0.22);}
+  .shape-row .n{flex:none;font-family:var(--sans);font-size:12px;font-weight:700;color:var(--sage-soft);width:18px;}
+  .shape-row .t{font-family:var(--sans);font-size:16px;font-weight:600;color:#FBF7EF;letter-spacing:.01em;}
+  .shape-row .b{font-size:15px;line-height:1.5;color:var(--sage-mist);margin-top:3px;}
+
+  /* THE 12 WEEKS */
+  .weeks-head{max-width:680px;margin-bottom:14px;}
+  .weeks-head h2{font-family:var(--serif-display);font-weight:400;font-size:44px;line-height:1.06;color:var(--ink);}
+  .weeks-head p{font-size:17px;line-height:1.65;color:var(--muted-2);margin-top:14px;}
+
+  .phase{margin-top:60px;}
+  .phase-head{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
+    border-bottom:1.5px solid var(--line-2);padding-bottom:20px;margin-bottom:30px;flex-wrap:wrap;
+  }
+  .phase-head .tag{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);margin-bottom:10px;}
+  .phase-head h3{font-family:var(--serif-display);font-weight:400;font-size:34px;line-height:1.05;color:var(--ink);}
+  .phase-head .desc{font-size:16px;line-height:1.55;color:var(--muted-2);max-width:30em;font-style:italic;}
+
+  .week-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:26px;}
+  .week-card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    box-shadow:0 2px 6px rgba(58,46,30,0.07);cursor:pointer;
+    display:flex;flex-direction:column;text-align:left;width:100%;
+    font-family:var(--serif-body);border-width:1px;
+    transition:transform .22s cubic-bezier(0.22,1,0.36,1),box-shadow .22s;
+  }
+  .week-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(58,46,30,0.14);}
+  .week-card:focus-visible{outline:2.5px solid var(--sage);outline-offset:3px;}
+  .week-top{
+    position:relative;height:124px;display:flex;align-items:center;justify-content:center;
+  }
+  .week-badge{
+    position:absolute;top:14px;left:16px;font-family:var(--sans);font-size:11px;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;padding:5px 11px;border-radius:999px;
+  }
+  .week-body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1;}
+  .week-body h4{font-family:var(--serif-display);font-weight:400;font-size:22px;line-height:1.12;color:var(--ink);margin-bottom:9px;}
+  .week-body .blurb{font-size:15px;line-height:1.55;color:var(--muted-2);flex:1;}
+  .week-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+  .week-tag{font-family:var(--sans);font-size:12px;font-weight:600;color:var(--sage);background:var(--moss-tint);border-radius:999px;padding:4px 12px;}
+
+  /* FOR MASA */
+  .masa{padding-top:90px;padding-bottom:90px;}
+  .masa-card{
+    background:var(--berry);border-radius:20px;padding:56px 54px;color:var(--bg);
+    box-shadow:0 14px 36px rgba(58,46,30,0.14);
+  }
+  .masa-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:54px;align-items:start;}
+  .masa-grid .eyebrow{color:var(--berry-soft);margin-bottom:18px;}
+  .masa-grid h2{font-family:var(--serif-display);font-weight:400;font-size:36px;line-height:1.08;color:#FBF7EF;}
+  .masa-grid .intro{font-size:16.5px;line-height:1.65;color:var(--berry-mist);margin-top:18px;}
+  .masa-list{display:flex;flex-direction:column;gap:2px;}
+  .masa-item{padding:22px 0;border-top:1px solid rgba(215,179,183,0.3);}
+  .masa-item h3{font-family:var(--serif-display);font-weight:400;font-size:23px;color:#FBF7EF;margin-bottom:7px;}
+  .masa-item p{font-size:15.5px;line-height:1.55;color:var(--berry-mist);}
+
+  /* CLOSING */
+  section.closing{background:var(--sage-dark);color:var(--moss-tint);}
+  section.closing .inner{padding-top:92px;padding-bottom:96px;text-align:center;}
+  section.closing .eyebrow{color:#8B9472;margin-bottom:24px;display:block;}
+  section.closing h2{font-family:var(--serif-display);font-weight:400;font-size:46px;line-height:1.12;color:#FBF7EF;max-width:18em;margin:0 auto;}
+  .mastered{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:40px;}
+  .mastered span{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--moss-tint);border:1.5px solid #5C6A48;border-radius:999px;padding:9px 20px;}
+  section.closing .sig{font-family:var(--serif-display);font-style:italic;font-size:24px;line-height:1.5;color:var(--sage-mist);margin-top:54px;}
+
+  /* FOOTER */
+  footer.site{background:var(--bg);border-top:1px solid var(--line);}
+  footer.site .inner{padding-top:34px;padding-bottom:34px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  footer.site .fb{font-family:var(--serif-display);font-size:21px;color:var(--ink);}
+  footer.site .ft{font-family:var(--sans);font-size:13.5px;color:var(--muted-3);}
+
+  /* ===================== MODAL ===================== */
+  .overlay{
+    position:fixed;inset:0;z-index:100;background:rgba(33,31,24,0.55);
+    backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+    display:flex;align-items:flex-start;justify-content:center;
+    padding:40px 24px;overflow:auto;
+    opacity:0;visibility:hidden;transition:opacity .2s ease;
+  }
+  .overlay.open{opacity:1;visibility:visible;}
+  .modal{
+    background:var(--card);border-radius:18px;width:100%;max-width:720px;overflow:hidden;
+    box-shadow:0 24px 60px rgba(33,31,24,0.4);margin:auto;
+    transform:translateY(8px) scale(0.99);transition:transform .22s cubic-bezier(0.22,1,0.36,1);
+  }
+  .overlay.open .modal{transform:none;}
+  .modal-head{position:relative;padding:38px 40px 34px;}
+  .modal-close{
+    position:absolute;top:22px;right:22px;width:38px;height:38px;border-radius:50%;
+    font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    font-family:var(--sans);
+  }
+  .modal-kicker{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:0.92;margin-bottom:14px;}
+  .modal-head h2{font-family:var(--serif-display);font-weight:400;font-size:38px;line-height:1.05;margin-bottom:14px;max-width:14em;}
+  .modal-head .focus{font-size:17px;line-height:1.6;max-width:34em;opacity:0.96;}
+  .modal-body{padding:34px 40px 40px;}
+  .modal-section{margin-bottom:30px;}
+  .modal-label{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px;}
+  .modal-label.ratios{color:var(--clay-deep);}
+  .modal-label.drills{color:var(--sage);}
+  .modal-list{display:flex;flex-direction:column;gap:12px;}
+  .modal-li{display:flex;gap:14px;align-items:flex-start;}
+  .modal-li .dot{flex:none;width:7px;height:7px;border-radius:50%;margin-top:9px;}
+  .modal-li.ratio .dot{background:var(--clay);}
+  .modal-li.drill .dot{background:#5C6A48;}
+  .modal-li p{font-size:16px;line-height:1.55;color:var(--ink-2);}
+  .modal-duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .duo{border-radius:12px;padding:22px 22px 24px;}
+  .duo.invention{background:#F3DCCB;}
+  .duo.stretch{background:#E0E3CF;}
+  .duo .k{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;}
+  .duo.invention .k{color:var(--clay-deep);}
+  .duo.stretch .k{color:var(--sage-dark);}
+  .duo.invention p{font-size:15.5px;line-height:1.55;color:#3A2618;}
+  .duo.stretch p{font-size:15.5px;line-height:1.55;color:#2B331F;}
+
+  .body-lock{overflow:hidden;}
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width:920px){
+    .hero{grid-template-columns:1fr;gap:44px;padding-top:60px;padding-bottom:56px;}
+    .hero h1{font-size:54px;}
+    .hero-card{max-width:440px;}
+    .how{grid-template-columns:1fr;gap:44px;}
+    .masa-grid{grid-template-columns:1fr;gap:34px;}
+    .masa-card{padding:44px 36px;}
+  }
+  @media (max-width:680px){
+    :root{--pad:22px;}
+    nav.links,.header-cta{display:none;}
+    .nav-toggle{
+      display:inline-flex;align-items:center;justify-content:center;
+      background:none;border:none;cursor:pointer;font-family:var(--sans);
+      font-size:14.5px;font-weight:600;color:var(--sage);gap:8px;
+    }
+    .mobile-menu{
+      display:none;flex-direction:column;gap:4px;
+      padding:8px var(--pad) 18px;border-top:1px solid var(--line);
+      font-family:var(--sans);font-size:16px;font-weight:500;
+    }
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{padding:12px 0;text-decoration:none;color:var(--muted);border-bottom:1px solid var(--line);}
+    .mobile-menu .btn{margin-top:12px;text-align:center;}
+    .hero h1{font-size:42px;}
+    .hero .lead{font-size:17.5px;}
+    .idea-head h2{font-size:32px;}
+    .how h2,.weeks-head h2{font-size:30px;}
+    .phase-head h3{font-size:27px;}
+    .masa-grid h2{font-size:29px;}
+    section.closing h2{font-size:33px;}
+    section.closing .sig{font-size:21px;}
+    .pad-lg{padding-top:64px;padding-bottom:64px;}
+    .week-grid{grid-template-columns:1fr;}
+    .modal-head{padding:30px 26px 28px;}
+    .modal-head h2{font-size:30px;}
+    .modal-body{padding:28px 26px 32px;}
+    .modal-duo{grid-template-columns:1fr;}
+    .overlay{padding:20px 14px;}
+  }
+</style>
+</head>
+<body id="top">
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand">heartful table.</a>
+      <nav class="links">
+        <a href="#idea">The idea</a>
+        <a href="#how">How it works</a>
+        <a href="#weeks">The 12 weeks</a>
+        <a href="#masa">For Masa</a>
+      </nav>
+      <button class="btn btn-sage header-cta" data-open-week="01">Start Week 1</button>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#idea">The idea</a>
+      <a href="#how">How it works</a>
+      <a href="#weeks">The 12 weeks</a>
+      <a href="#masa">For Masa</a>
+      <button class="btn btn-sage" data-open-week="01">Start Week 1</button>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="wrap hero">
+    <div>
+      <div class="eyebrow">A 12-week plant-based masterclass</div>
+      <h1>The Home Kitchen Masterclass</h1>
+      <p class="lead">A skills curriculum for <em>Michael &amp; Masa</em> — built less on recipe-following than on the deliberate habits that let a cook pull a soufflé out of thin air: ratios over recipes, drilling weak spots, repetition, and inventing under constraint.</p>
+      <div class="hero-cta">
+        <a href="#weeks" class="btn btn-clay">See the 12 weeks</a>
+        <a href="#idea" class="btn btn-ghost">The idea behind it</a>
+      </div>
+    </div>
+    <div class="hero-card hatch">
+      <svg width="62" height="62" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 9 v8 a3 3 0 0 1 -6 0 V9"></path><path d="M12 9 V13"></path><path d="M12 17 V35"></path><path d="M30 9 c3.4 2.4 3.4 9.6 0 13 V35"></path></svg>
+      <div class="cap">12 weeks · 3 phases</div>
+      <div class="hero-stats">
+        <div class="stat"><div class="num">3</div><div class="lbl">sessions / week</div></div>
+        <div class="divider"></div>
+        <div class="stat"><div class="num">1</div><div class="lbl">shared notebook</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THE IDEA ===================== -->
+  <section id="idea" class="band">
+    <div class="wrap pad-lg">
+      <div class="idea-head">
+        <div class="eyebrow">The idea behind this</div>
+        <h2>Not recipe-following — technical range, working without a net, and owning your fundamentals.</h2>
+        <p>Masa already lives in the part most people spend years building — flavour, structure, iteration. So where a week feels easy, the job is to push the confidence stretch harder. Five habits do most of the work:</p>
+      </div>
+      <div class="principles" id="principles"></div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT WORKS ===================== -->
+  <section id="how" class="wrap pad-lg how">
+    <div>
+      <div class="eyebrow">How to use it</div>
+      <h2>Consistency beats volume. The weeks are a spine, not a deadline.</h2>
+      <div class="rules" id="rules"></div>
+    </div>
+    <div class="shape-card hatch">
+      <div class="k">Every week has the same shape</div>
+      <p class="h">Five moves, repeated for twelve weeks.</p>
+      <div id="shape"></div>
+    </div>
+  </section>
+
+  <!-- ===================== THE 12 WEEKS ===================== -->
+  <section id="weeks" class="band top-only">
+    <div class="wrap" style="padding-top:88px;padding-bottom:96px;">
+      <div class="weeks-head">
+        <div class="eyebrow">The curriculum</div>
+        <h2>Twelve weeks, three phases</h2>
+        <p>Tap any week to see its ratios to own, technique drills, invention challenge and confidence stretch.</p>
+      </div>
+      <div id="phases"></div>
+    </div>
+  </section>
+
+  <!-- ===================== FOR MASA ===================== -->
+  <section id="masa" class="wrap masa">
+    <div class="masa-card hatch">
+      <div class="masa-grid">
+        <div>
+          <div class="eyebrow">For Masa, specifically</div>
+          <h2>Where to point the camera</h2>
+          <p class="intro">Flavour balance, seasoning and composition are where her recipe-development instincts already shine. Lean the confidence stretches into the genuine growth edges instead.</p>
+        </div>
+        <div class="masa-list" id="masaList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CLOSING ===================== -->
+  <section class="closing">
+    <div class="wrap inner">
+      <span class="eyebrow">By Week 12</span>
+      <h2>You'll make — without a recipe — a vinaigrette, a béchamel, fresh pasta, a custard, bread, and an aquafaba meringue.</h2>
+      <div class="mastered" id="mastered"></div>
+      <p class="sig">Cook often, repeat deliberately, and feed people.<br>That's the whole secret.</p>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site">
+    <div class="wrap inner">
+      <div class="fb">heartful table.</div>
+      <div class="ft">The Home Kitchen Masterclass · a 12-week plant-based curriculum</div>
+    </div>
+  </footer>
+
+  <!-- ===================== MODAL ===================== -->
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head hatch" id="modalHead">
+        <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+        <div class="modal-kicker" id="modalKicker"></div>
+        <h2 id="modalTitle"></h2>
+        <p class="focus" id="modalFocus"></p>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section" id="ratiosBlock">
+          <div class="modal-label ratios">Ratios to own</div>
+          <div class="modal-list" id="ratiosList"></div>
+        </div>
+        <div class="modal-section">
+          <div class="modal-label drills" id="drillsLabel">Technique drills</div>
+          <div class="modal-list" id="drillsList"></div>
+        </div>
+        <div class="modal-duo">
+          <div class="duo invention">
+            <div class="k">Invention challenge</div>
+            <p id="inventionText"></p>
+          </div>
+          <div class="duo stretch">
+            <div class="k">Confidence stretch</div>
+            <p id="stretchText"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+/* =========================================================
+   DATA — ported verbatim from the design handoff
+   ========================================================= */
+const ACCENTS = {
+  moss:   { bg:'#4C573C', glyph:'#A8AF8E', text:'#EFF1E4', badgeText:'#EFF1E4', badgeBg:'rgba(239,241,228,0.16)' },
+  clay:   { bg:'#C2683E', glyph:'#F3DCCB', text:'#FBF7EF', badgeText:'#FBF7EF', badgeBg:'rgba(251,247,239,0.20)' },
+  honey:  { bg:'#D69A3C', glyph:'#9C6A1B', text:'#3A2E14', badgeText:'#3A2E14', badgeBg:'rgba(58,46,20,0.14)' },
+  berry:  { bg:'#8C4A52', glyph:'#D7B3B7', text:'#F4EEE1', badgeText:'#F4EEE1', badgeBg:'rgba(244,238,225,0.18)' },
+  finale: { bg:'#2B331F', glyph:'#8B9472', text:'#EFF1E4', badgeText:'#EFF1E4', badgeBg:'rgba(239,241,228,0.18)' },
+};
+
+const PHASES = [
+  {
+    tag:'Phase One · Weeks 1–4', short:'Phase 1',
+    title:'Foundations & flavour',
+    desc:'The unglamorous bedrock. Get these solid and everything downstream gets easier.',
+    weeks:[
+      { no:'01', accent:'moss', title:'Knife skills & heat control',
+        blurb:'Knife speed, even cuts, and what heat really does.',
+        tags:['Knife work','Heat'],
+        focus:'Speed, consistency and safety with a knife — and understanding what high vs. low heat actually does to food.',
+        ratios:['Salt as a starting point — about 1% of the food’s weight is a reliable baseline (5g per 500g). Taste up from there.'],
+        drills:['The four core cuts — dice, julienne, chiffonade, brunoise — worked through a kilo of onions, carrots and herbs. Aim for even first, then fast.','One vegetable (mushrooms are ideal) cooked three ways: a screaming-hot sear, a gentle sweat, a slow caramelisation. Heat is the variable, not the ingredient.'],
+        invention:'A meal built from one vegetable cut three different ways.',
+        stretch:'Cook a full dinner with your eyes on the pan, not your hands — trusting the knife.' },
+      { no:'02', accent:'clay', title:'Emulsions & dressings',
+        blurb:'Creamy and cohesive — with no dairy and no egg.',
+        tags:['Emulsions','Sauces'],
+        focus:'Making things creamy and cohesive without dairy or egg — the single most confidence-building plant-based skill, because it’s where people assume they “need” animal products.',
+        ratios:['Vinaigrette — 3 parts oil : 1 part acid, plus salt and an emulsifier (mustard or a little aquafaba). Memorise this forever.','Aquafaba mayo — chickpea brine as the egg-replacement base, then oil drizzled in slowly while blending until it holds.','Cashew cream — roughly 1 part soaked cashews : 1 part water. Less water, thicker.'],
+        drills:['Make a vinaigrette purely by feel, then check yourself against the 3:1.','Break a sauce on purpose, then bring it back — learning to rescue an emulsion kills the fear of it.'],
+        invention:'A meal around three sauces from one base technique — a vinaigrette, an emulsified mayo, and a cashew cream.',
+        stretch:'A composed salad good enough to serve to guests, dressed three ways on the plate.' },
+      { no:'03', accent:'honey', title:'Stocks, bases & layering flavour',
+        blurb:'Where the deep, savoury flavour actually comes from.',
+        tags:['Stocks','Umami'],
+        focus:'Why restaurant food tastes “deeper.” Building umami and savouriness from plants — the thing vegan cooking is most often, unfairly, accused of lacking.',
+        ratios:['Soffritto / mirepoix — roughly 2 parts onion : 1 part carrot : 1 part celery, the base under a huge share of savoury cooking.','A working vegetable stock you can make without a recipe.'],
+        drills:['The umami toolkit — miso, tamari, nutritional yeast, dried mushrooms, tomato paste, smoked paprika, seaweed. Push one broth from “fine” to “deep,” tasting at each addition.','Make a soffritto properly slow — 20+ minutes — and taste it against a rushed one.'],
+        invention:'A soup or braise where all the depth comes from technique and the umami toolkit — no shortcuts.',
+        stretch:'A two-component dish where a homemade stock is the star, not an afterthought.' },
+      { no:'04', accent:'berry', title:'Sauces & the art of finishing',
+        blurb:'The last two minutes that make a dish — built from scratch.',
+        tags:['Roux','Pan sauces'],
+        focus:'A dish is often “made” in the last two minutes. Pan sauces, reductions and the roux family — veganised.',
+        ratios:['Roux — equal weights fat (vegan butter or oil) and flour.','Béchamel — about 30g vegan butter + 30g flour per 500ml plant milk for a medium sauce.','Reduction logic — acid + fat + seasoning, cooked down until it coats the back of a spoon.'],
+        drills:['Make a béchamel three times until it’s lump-free without thinking.','Build a pan sauce from the fond — the browned bits — after searing mushrooms or tofu.'],
+        invention:'One vegetable or protein element, elevated by a sauce built from scratch in the same pan.',
+        stretch:'A vegan gratin or lasagne carried entirely by a confident béchamel.' },
+    ]
+  },
+  {
+    tag:'Phase Two · Weeks 5–8', short:'Phase 2',
+    title:'Plant proteins & texture',
+    desc:'The heart of vegan technique, and where the most range lives.',
+    weeks:[
+      { no:'05', accent:'moss', title:'Tofu mastery',
+        blurb:'One blank canvas, four completely different textures.',
+        tags:['Tofu','Texture'],
+        focus:'Turning a blank canvas into something with crust, chew and flavour. Tofu is the egg of vegan cooking — endlessly versatile once you stop being afraid of it.',
+        ratios:['Crisping coat — a light dusting of cornstarch is the difference between soggy and shatteringly crisp.','Marinade balance — salty (soy) + sweet + acid + aromatic, in rough balance. Taste and adjust.'],
+        drills:['Press, then cook one block four ways across the week: pan-crisped, baked, silken-blended, and braised. One ingredient, four textures.','Get a genuinely crisp crust without deep-frying.'],
+        invention:'A meal where tofu appears twice, in two completely different textures.',
+        stretch:'Silken tofu as the base of a savoury sauce and a sweet dessert in the same week.' },
+      { no:'06', accent:'clay', title:'Tempeh, legumes & beans from scratch',
+        blurb:'The protein workhorses, treated like heroes.',
+        tags:['Beans','Tempeh'],
+        focus:'The protein workhorses, treated with intention rather than dumped from a can.',
+        ratios:['Dried beans — cook in well-salted, aromatic liquid, not water alone. The pot likker is a bonus ingredient.','Tempeh — steam first to mellow bitterness, then marinate and cook.'],
+        drills:['Cook one pot of dried beans from scratch and taste them against canned — this alone changes how you cook.','Crumble and crisp tempeh as a “mince”; braise it as a “chop.”'],
+        invention:'A bean or lentil dish where the beans are the hero, not a filler — texture and seasoning carrying it.',
+        stretch:'A composed plate built around tempeh as the centrepiece, treated like you’d treat a steak.' },
+      { no:'07', accent:'honey', title:'Seitan, mushrooms & “meaty” texture',
+        blurb:'Building chew and structure — the showpiece corner.',
+        tags:['Seitan','Mushrooms'],
+        focus:'The most technically impressive corner of vegan cooking — building chew and structure from wheat gluten, and coaxing depth from fungi.',
+        ratios:['Seitan base — vital wheat gluten + liquid + seasoning, kneaded for elasticity then simmered or steamed. The kneading and resting is the technique.'],
+        drills:['Make seitan once from scratch — the closest plant-based equivalent to “making meat,” and a real confidence milestone.','Treat king oyster or lion’s mane mushrooms as a protein: score, press, sear hard.'],
+        invention:'A centre-of-the-plate dish where the protein is something you built, not bought.',
+        stretch:'A dish you’d genuinely serve to a sceptical omnivore and expect to win them over.' },
+      { no:'08', accent:'berry', title:'The vegan egg toolkit',
+        blurb:'What eggs really do, and how to replace each job.',
+        tags:['Aquafaba','Binding'],
+        focus:'Demystifying what eggs do — binding, leavening, emulsifying, aerating — and replacing each one deliberately. This is the week that unlocks baking and desserts later.',
+        ratios:['Flax / chia egg (binding) — 1 tbsp ground flax + 3 tbsp water = 1 egg.','Aquafaba (whites) — about 3 tbsp ≈ 1 egg white; whips to peaks with a pinch of cream of tartar.'],
+        drills:['Whip aquafaba to actually-stiff, holds-over-your-head peaks. Most people stop too early — do it until you know what “stiff” looks like.','Use the same aquafaba whipped into a savoury foam and folded for lift.'],
+        invention:'One dish that depends on a vegan egg replacement working correctly — and would fail if it didn’t.',
+        stretch:'A stable aquafaba meringue — the gateway to Week 11’s desserts.' },
+    ]
+  },
+  {
+    tag:'Phase Three · Weeks 9–12', short:'Phase 3',
+    title:'Advanced technique & composition',
+    desc:'Putting it together, working under pressure, and plating like it matters.',
+    weeks:[
+      { no:'09', accent:'moss', title:'Doughs & fresh pasta',
+        blurb:'Dough by feel — made from almost nothing.',
+        tags:['Pasta','Dough'],
+        focus:'Working dough by feel — the most “I made this from nothing” skill there is.',
+        ratios:['Eggless fresh pasta — roughly 2 parts semolina : 1 part water by weight (100g semolina : ~50g water), adjusted to a smooth, springy dough. Feel beats the scale.','Hydration as a dial — wetter is softer, drier is chewier.'],
+        drills:['Make, rest, roll and cut fresh pasta by hand. Repeat until the dough tells you when it’s right.','One filled shape — ravioli or tortellini — using a Week 5 or Week 7 filling.'],
+        invention:'A pasta dish where both the pasta and the sauce are made from scratch in one session.',
+        stretch:'Hand-rolled pasta thin enough to see your hand through it.' },
+      { no:'10', accent:'clay', title:'Bread & lamination',
+        blurb:'Fermentation, patience, and the discipline of dough.',
+        tags:['Bread','Lamination'],
+        focus:'Fermentation and the discipline of dough that takes time. Bread is almost entirely vegan by default — this is pure technique.',
+        ratios:['Baker’s percentages — flour 100%, water ~65%, salt ~2%, yeast ~1%. Internalise this and you can scale any bread by instinct.'],
+        drills:['Bake one straightforward loaf, paying attention to gluten development and proof — under- vs. over-proofed is a feel you only learn by doing.','Attempt a simple laminated dough (rough puff with vegan butter) for the confidence hit.'],
+        invention:'A meal built around bread you baked that day.',
+        stretch:'A laminated pastry — savoury or sweet — with visible layers.' },
+      { no:'11', accent:'honey', title:'Desserts & sugar work',
+        blurb:'The “I could never” frontier — creams, meringue, caramel.',
+        tags:['Desserts','Sugar work'],
+        focus:'The classic “I could never” frontier. Vegan desserts lean on Weeks 2 and 8 — emulsions and the egg toolkit — so you arrive ready.',
+        ratios:['Pastry cream — about 40g cornstarch + 50–80g sugar per 500ml plant milk, cooked until thick. A pinch of turmeric for colour, vanilla to finish.','Caramel — sugar melted with a splash of water, then plant cream whisked in off the heat for a sauce.'],
+        drills:['Make a smooth, lump-free vegan custard / pastry cream.','Take an aquafaba meringue all the way to a baked pavlova or macaron shells.','Make caramel without burning it — then make it again, pushing it a shade darker.'],
+        invention:'A plated dessert with three distinct components — a cream, a crisp or base, and a sauce or fruit element.',
+        stretch:'A restaurant-style plated dessert you’d be proud to put in front of guests.' },
+      { no:'12', accent:'finale', title:'The MasterChef week',
+        blurb:'Everything, under the clock. The finale.',
+        tags:['Finale','Pressure test'],
+        focus:'Everything, under pressure. Your pressure test and invention test rolled into a finale — done together, then critiqued honestly.',
+        ratios:[],
+        drillsLabel:'The challenge',
+        drills:['Mystery box, 90 minutes — each of you cooks a complete dish from a shared box of ingredients neither chose. No recipes, no phones. The other sets the box.','Signature dish, timed — each of you plates a single dish that represents who you are as a cook, drawing on everything from the past 11 weeks.','Plate, photograph and judge honestly — score each other out of 10 on flavour, technique and presentation, with one specific note each.'],
+        invention:'A signature plate that says who you are as a cook — composed under the clock.',
+        stretch:'A three-course vegan menu cooked for guests — your own small MasterChef finale, and a great Heartful Table moment.' },
+    ]
+  },
+];
+
+const PRINCIPLES = [
+  { num:'1', title:'Ratios over recipes', body:'Internalise that a vinaigrette is 3:1 and you stop needing recipes — you start composing.' },
+  { num:'2', title:'Drill your weak spots', body:'Attack the things you avoid, not the things you’re already good at.' },
+  { num:'3', title:'Repetition, not novelty', body:'One technique, done three or four times in a week until it’s muscle memory.' },
+  { num:'4', title:'Invent under constraint', body:'Mystery-box cooks with no recipe and a timer build the on-the-spot composition that looks like magic.' },
+  { num:'5', title:'Cook for an audience', body:'Feed people, then ask for honest feedback. That’s where the learning compounds.' },
+];
+
+const RULES = [
+  'Three sessions a week is the target — one ratio, one technique drill, one invention. Adjust to your life; consistency beats volume.',
+  'Keep a shared notebook. Every ratio you internalise goes in it — by Week 12 it’s your personal cookbook-in-your-head.',
+  'Repeat, don’t rush. If a technique isn’t muscle memory by the end of its week, carry it forward.',
+  'Photograph every invention cook. It’s how you’ll see progress, and it doubles as Heartful Table material.',
+  'Rate each invention out of 10 and write one sentence on what you’d change. That sentence is where the learning compounds.',
+];
+
+const SHAPE = [
+  { n:'01', title:'Focus', body:'What the week is really about.' },
+  { n:'02', title:'Ratios to own', body:'The numbers you commit to memory.' },
+  { n:'03', title:'Technique drills', body:'Repetition until it’s muscle memory.' },
+  { n:'04', title:'Invention challenge', body:'Cook it with no recipe.' },
+  { n:'05', title:'Confidence stretch', body:'Push past where it feels safe.' },
+];
+
+const MASA = [
+  { title:'Working without measuring', body:'Trusting feel over the scale — Weeks 2 and 9.' },
+  { title:'High-heat, high-stakes technique', body:'Seitan, lamination, sugar work, meringue — where the margin for error is real, and nailing it is the unlock.' },
+  { title:'Speed under a clock', body:'Composition is one thing; composition in 90 minutes with no recipe is another (Week 12).' },
+];
+
+const MASTERED = ['Vinaigrette','Béchamel','Fresh pasta','Custard','Bread','Aquafaba meringue'];
+
+const GLYPH = '<svg width="40" height="40" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 9 v8 a3 3 0 0 1 -6 0 V9"></path><path d="M12 9 V13"></path><path d="M12 17 V35"></path><path d="M30 9 c3.4 2.4 3.4 9.6 0 13 V35"></path></svg>';
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+const $ = (sel, root=document) => root.querySelector(sel);
+const el = (tag, cls) => { const n = document.createElement(tag); if(cls) n.className = cls; return n; };
+const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+// flat lookup of weeks by number
+const WEEK_INDEX = {};
+
+function renderPrinciples(){
+  const host = $('#principles');
+  PRINCIPLES.forEach(p => {
+    const c = el('div','principle');
+    c.innerHTML = `<div class="num">${esc(p.num)}</div><h3>${esc(p.title)}</h3><p>${esc(p.body)}</p>`;
+    host.appendChild(c);
+  });
+}
+
+function renderRules(){
+  const host = $('#rules');
+  RULES.forEach(r => {
+    const row = el('div','rule');
+    row.innerHTML = `<div class="dot"></div><p>${esc(r)}</p>`;
+    host.appendChild(row);
+  });
+}
+
+function renderShape(){
+  const host = $('#shape');
+  SHAPE.forEach(s => {
+    const row = el('div','shape-row');
+    row.innerHTML = `<div class="n">${esc(s.n)}</div><div><div class="t">${esc(s.title)}</div><div class="b">${esc(s.body)}</div></div>`;
+    host.appendChild(row);
+  });
+}
+
+function renderMasa(){
+  const host = $('#masaList');
+  MASA.forEach(m => {
+    const item = el('div','masa-item');
+    item.innerHTML = `<h3>${esc(m.title)}</h3><p>${esc(m.body)}</p>`;
+    host.appendChild(item);
+  });
+}
+
+function renderMastered(){
+  const host = $('#mastered');
+  MASTERED.forEach(x => {
+    const s = el('span');
+    s.textContent = x;
+    host.appendChild(s);
+  });
+}
+
+function renderPhases(){
+  const host = $('#phases');
+  PHASES.forEach(phase => {
+    const wrap = el('div','phase');
+
+    const head = el('div','phase-head');
+    head.innerHTML =
+      `<div><div class="tag">${esc(phase.tag)}</div><h3>${esc(phase.title)}</h3></div>` +
+      `<p class="desc">${esc(phase.desc)}</p>`;
+    wrap.appendChild(head);
+
+    const grid = el('div','week-grid');
+    phase.weeks.forEach(w => {
+      WEEK_INDEX[w.no] = { ...w, phaseShort: phase.short };
+      const a = ACCENTS[w.accent];
+      const card = el('button','week-card');
+      card.type = 'button';
+      card.setAttribute('data-open-week', w.no);
+      card.setAttribute('aria-label', `Week ${w.no} — ${w.title}`);
+      const tags = w.tags.map(t => `<span class="week-tag">${esc(t)}</span>`).join('');
+      card.innerHTML =
+        `<div class="week-top hatch" style="background-color:${a.bg};color:${a.glyph};">
+           <div class="week-badge" style="color:${a.badgeText};background:${a.badgeBg};">Week ${esc(w.no)}</div>
+           ${GLYPH}
+         </div>
+         <div class="week-body">
+           <h4>${esc(w.title)}</h4>
+           <p class="blurb">${esc(w.blurb)}</p>
+           <div class="week-tags">${tags}</div>
+         </div>`;
+      grid.appendChild(card);
+    });
+    wrap.appendChild(grid);
+    host.appendChild(wrap);
+  });
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+const overlay   = $('#overlay');
+const modalHead = $('#modalHead');
+let lastFocused = null;
+
+function openWeek(no){
+  const w = WEEK_INDEX[no];
+  if(!w) return;
+  const a = ACCENTS[w.accent];
+
+  // header colours
+  modalHead.style.backgroundColor = a.bg;
+  modalHead.style.color = a.text;
+  const closeBtn = $('#modalClose');
+  closeBtn.style.background = a.badgeBg;
+  closeBtn.style.border = `1px solid ${a.badgeBg}`;
+  closeBtn.style.color = a.text;
+
+  $('#modalKicker').textContent = `Week ${w.no} · ${w.phaseShort}`;
+  $('#modalTitle').textContent = w.title;
+  $('#modalFocus').textContent = w.focus;
+
+  // ratios (hidden if none)
+  const ratiosBlock = $('#ratiosBlock');
+  const ratiosList = $('#ratiosList');
+  ratiosList.innerHTML = '';
+  if(w.ratios && w.ratios.length){
+    ratiosBlock.style.display = '';
+    w.ratios.forEach(r => {
+      const li = el('div','modal-li ratio');
+      li.innerHTML = `<div class="dot"></div><p>${esc(r)}</p>`;
+      ratiosList.appendChild(li);
+    });
+  } else {
+    ratiosBlock.style.display = 'none';
+  }
+
+  // drills
+  $('#drillsLabel').textContent = w.drillsLabel || 'Technique drills';
+  const drillsList = $('#drillsList');
+  drillsList.innerHTML = '';
+  w.drills.forEach(d => {
+    const li = el('div','modal-li drill');
+    li.innerHTML = `<div class="dot"></div><p>${esc(d)}</p>`;
+    drillsList.appendChild(li);
+  });
+
+  $('#inventionText').textContent = w.invention;
+  $('#stretchText').textContent = w.stretch;
+
+  lastFocused = document.activeElement;
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden','false');
+  document.body.classList.add('body-lock');
+  closeBtn.focus();
+}
+
+function closeModal(){
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden','true');
+  document.body.classList.remove('body-lock');
+  if(lastFocused) lastFocused.focus();
+}
+
+/* =========================================================
+   WIRING
+   ========================================================= */
+function init(){
+  renderPrinciples();
+  renderRules();
+  renderShape();
+  renderMasa();
+  renderMastered();
+  renderPhases();
+
+  // open buttons (week cards + "Start Week 1")
+  document.addEventListener('click', (e) => {
+    const opener = e.target.closest('[data-open-week]');
+    if(opener){
+      openWeek(opener.getAttribute('data-open-week'));
+      return;
+    }
+  });
+
+  // close interactions
+  overlay.addEventListener('click', (e) => { if(e.target === overlay) closeModal(); });
+  $('#modalClose').addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
+
+  // mobile menu
+  const toggle = $('.nav-toggle');
+  const menu = $('#mobileMenu');
+  toggle.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  menu.querySelectorAll('a, button').forEach(node => {
+    node.addEventListener('click', () => { menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
