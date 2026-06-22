@@ -3,3 +3,8 @@
 _extracted/
 .thumbnail
 .DS_Store
+
+# Internal strategy & research — keep local, never publish to the public repo
+VISION.md
+*-research*.md
+_internal/
